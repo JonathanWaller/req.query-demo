@@ -18,13 +18,8 @@ const getMusic = (req, res) => {
 };
 
 const getFilteredSong = (req, res) => {
-  console.log(req.query);
-  if (req.query.name) {
-    return res
-      .status(200)
-      .json(music.filter(song => song.includes(req.query.name)));
-  }
-  return res.status(200).json(music);
+  console.log(req.query.name);
+  res.status(200).json(music.filter(song => song.includes(req.query.name)));
 };
 
 module.exports = {
