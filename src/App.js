@@ -23,7 +23,7 @@ class App extends Component {
   };
 
   handleClick = () => {
-    axios.get(`/api/filter?name=${this.state.userInput}`).then(response => {
+    axios.get(`/api/filter?songName=${this.state.userInput}`).then(response => {
       console.log(response);
       this.setState({ music: response.data });
     });
@@ -34,7 +34,9 @@ class App extends Component {
     let myMusic = this.state.music.map((song, ind) => {
       return (
         <div key={ind}>
-          <div>{song}</div>
+          <div>
+            #{ind + 1}: {song}
+          </div>
         </div>
       );
     });
@@ -43,9 +45,17 @@ class App extends Component {
         <header className="App-header">
           <h1 className="App-title">Req.query demo</h1>
         </header>
-        <input onChange={e => this.handleInput(e)} placeholder="search song" />
-        <button onClick={() => this.handleClick()}>Search</button>
-        {myMusic}
+
+        <input
+          className="inputField"
+          onChange={e => this.handleInput(e)}
+          placeholder="Filter by Song Title"
+        />
+        <button onClick={() => this.handleClick()}>Submit</button>
+        <h3>My Songs</h3>
+        <div className="listWrapper">
+          <div className="songList">{myMusic}</div>
+        </div>
       </div>
     );
   }

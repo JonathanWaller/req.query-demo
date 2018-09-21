@@ -1,15 +1,15 @@
 const music = [
-  "first song",
-  "boom boom pow",
-  "macarena",
-  "hip hop hooray",
-  "hey jude",
-  "all about that bass",
-  "moves like jagger",
-  "happy",
-  "upside down",
-  "dilemma",
-  "last song"
+  "First Song",
+  "Boom Boom Pow",
+  "Macarena",
+  "Hip Hop Hooray",
+  "Hey Jude",
+  "All About That Bass",
+  "Moves Like Jagger",
+  "Happy",
+  "Upside Down",
+  "Dilemma",
+  "Last Song"
 ];
 
 const getMusic = (req, res) => {
@@ -19,7 +19,13 @@ const getMusic = (req, res) => {
 
 const getFilteredSong = (req, res) => {
   console.log(req.query.name);
-  res.status(200).json(music.filter(song => song.includes(req.query.name)));
+  res
+    .status(200)
+    .json(
+      music.filter(song =>
+        song.toLowerCase().includes(req.query.songName.toLowerCase())
+      )
+    );
 };
 
 module.exports = {
